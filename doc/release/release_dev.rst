@@ -57,6 +57,9 @@ Improvements
 - [`#5898 <https://github.com/networkx/networkx/pull/5898>`_]
   Implements computing and checking for minimal d-separators between two nodes.
   Also adds functionality to DAGs for computing v-structures.
+- [`#5947 <https://github.com/networkx/networkx/pull/5947>`_]
+  Implements the ``MixedEdgeGraph`` object, which is an experimental feature
+  for enabling support of graphs with mixed edges.
 
 API Changes
 -----------
