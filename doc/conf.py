@@ -38,6 +38,7 @@ sphinx_gallery_conf = {
             "../examples/graphviz_layout",
             "../examples/graphviz_drawing",
             "../examples/graph",
+            "../examples/mixededge",
             "../examples/algorithms",
             "../examples/advanced",
             "../examples/external",
