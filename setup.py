@@ -67,6 +67,7 @@ packages = [
     "networkx.algorithms",
     "networkx.algorithms.assortativity",
     "networkx.algorithms.bipartite",
+    "networkx.algorithms.causal",
     "networkx.algorithms.centrality",
     "networkx.algorithms.community",
     "networkx.algorithms.components",
