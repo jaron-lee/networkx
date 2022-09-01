@@ -1,5 +1,6 @@
-import networkx as nx
 import pytest
+
+import networkx as nx
 
 
 def test_m_separation():
@@ -10,7 +11,9 @@ def test_m_separation():
     G = nx.MixedEdgeGraph([digraph, bigraph], ["directed", "bidirected"])
 
     # error should be raised if someone does not use a MixedEdgeGraph
-    with pytest.raises(RuntimeError, match="m-separation should only be run on a MixedEdgeGraph"):
+    with pytest.raises(
+        RuntimeError, match="m-separation should only be run on a MixedEdgeGraph"
+    ):
         nx.m_separated(digraph, {0}, {1}, set())
 
     # basic d-separation statements based on blocking paths should work
