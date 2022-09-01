@@ -54,7 +54,7 @@ def m_separated(
     ``ADMG`` is not represented.
     """
     if not isinstance(G, nx.MixedEdgeGraph):
-        raise RuntimeError(
+        raise nx.NetworkXError(
             "m-separation should only be run on a MixedEdgeGraph. If "
             'you have a directed graph, use "d_separated" function instead.'
         )
@@ -62,7 +62,7 @@ def m_separated(
         edge_type not in G.edge_types
         for edge_type in [bidirected_edge_name, directed_edge_name]
     ):
-        raise RuntimeError(
+        raise nx.NetworkXError(
             f"m-separation only works on graphs with directed and bidirected edges. "
             f"Your graph passed in has the following edge types: {G.edge_types}, whereas "
             f"the function is expecting directed edges named {directed_edge_name} and "

@@ -1,6 +1,7 @@
 import pytest
 
 import networkx as nx
+from networkx.exception import NetworkXError
 
 
 def test_m_separation():
@@ -12,9 +13,30 @@ def test_m_separation():
 
     # error should be raised if someone does not use a MixedEdgeGraph
     with pytest.raises(
-        RuntimeError, match="m-separation should only be run on a MixedEdgeGraph"
+        NetworkXError, match="m-separation should only be run on a MixedEdgeGraph"
     ):
         nx.m_separated(digraph, {0}, {1}, set())
+
+    # error should be raised if the directed edges form a cycle
+    G_error = G.copy()
+    G_error.add_edge(4, 2, "directed")
+    with pytest.raises(
+        NetworkXError, match="directed edge graph should be directed acyclic"
+    ):
+        nx.m_separated(G_error, {0}, {3}, set())
+
+    # if passing in non-default names for edge types, then m_separated will not work
+    G_error = G.copy()
+    G_error._edge_graphs["bi-directed"] = G_error.get_graphs("bidirected")
+    G_error._edge_graphs.pop("bidirected")
+    with pytest.raises(
+        NetworkXError,
+        match="m-separation only works on graphs with directed and bidirected edges.",
+    ):
+        nx.m_separated(G_error, {0}, {3}, set())
+    assert not nx.m_separated(
+        G_error, {0}, {3}, set(), bidirected_edge_name="bi-directed"
+    )
 
     # basic d-separation statements based on blocking paths should work
     assert not nx.m_separated(G, {0}, {3}, set())

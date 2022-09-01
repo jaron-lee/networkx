@@ -72,7 +72,6 @@ class MixedEdgeGraph:
     """
 
     _graphs = list
-    _edge_types = list
     graph_attr_dict_factory = dict
     node_dict_factory = dict
     node_attr_dict_factory = dict
