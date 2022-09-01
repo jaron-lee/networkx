@@ -4,7 +4,7 @@ import networkx as nx
 
 
 def test_m_separation():
-    digraph = nx.path_graph(4)
+    digraph = nx.path_graph(4, create_using=nx.DiGraph)
     digraph.add_edge(2, 4)
     bigraph = nx.Graph([(2, 3)])
     bigraph.add_nodes_from(digraph)
