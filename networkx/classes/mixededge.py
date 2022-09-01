@@ -1,6 +1,7 @@
 from copy import deepcopy
 from functools import cached_property
 from itertools import chain
+from typing import Iterable, Iterator
 
 import networkx as nx
 from networkx.classes.reportviews import NodeView
@@ -1054,10 +1055,11 @@ class MixedEdgeGraph:
             for edge_type_, graph in self._edge_graphs.items()
         }
 
-    def neighbors(self, n):
-        return chain.from_iterable(
-            nx.all_neighbors(G, n) for _, G in self.get_graphs().items()
-        )
+    def neighbors(self, n) -> Iterator:
+        nbrs = set()
+        for _, G in self.get_graphs().items():
+            nbrs = nbrs.union(set(nx.all_neighbors(G, n)))
+        return iter(nbrs)
 
     def subgraph(self, nodes):
         """Returns a SubGraph view of the subgraph induced on ``nodes``.
