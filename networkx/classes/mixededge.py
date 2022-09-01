@@ -1055,7 +1055,7 @@ class MixedEdgeGraph:
             for edge_type_, graph in self._edge_graphs.items()
         }
 
-    def neighbors(self, n) -> Iterator:
+    def neighbors(self, n):
         nbrs = set()
         for _, G in self.get_graphs().items():
             nbrs = nbrs.union(set(nx.all_neighbors(G, n)))
